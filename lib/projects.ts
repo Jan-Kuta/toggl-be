@@ -9,7 +9,7 @@ export interface Project {
 
 export async function list() {
   return await sql<Project[]>`
-    SELECT id, name, active, user_name projects
+    SELECT id, name, active, user_name FROM projects
     ORDER BY id DESC
   `
 }
