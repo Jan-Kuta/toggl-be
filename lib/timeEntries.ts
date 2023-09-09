@@ -33,7 +33,7 @@ export async function list(userName: string) {
 
 export async function create(te: TimeEntry) {
   return await sql<TimeEntry[]>`
-    INSERT INTO time_entries (task, start, end, user_name, project_id) VALUES (${te.task}, ${te.start}, ${te.end}, ${te.userName}, ${te.projectId})
+    INSERT INTO projects (task, start, end, user_name, project_id) VALUES (${te.task}, ${te.start}, ${te.end || null}, ${te.userName})
     RETURNING id, task, start, end, project_id
   `
 }
