@@ -13,5 +13,9 @@ export default async function handler(
     return res.status(200).json('ok')
   }
 
+  if (req.method === 'OPTIONS') {
+    return res.status(200).json('ok')
+  }
+
   return res.status(405).send('Method Not Allowed')
 }

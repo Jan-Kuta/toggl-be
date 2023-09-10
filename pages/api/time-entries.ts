@@ -38,6 +38,8 @@ export default async function handler(
       }
       const removed = await te.remove(req.body)
       return res.status(removed.length > 0 ? 204 : 404).end()
+    case 'OPTIONS':
+      return res.status(200).json('ok')
     default:
       return res.status(405).send('Method Not Allowed')
   }
