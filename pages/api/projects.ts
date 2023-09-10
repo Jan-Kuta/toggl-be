@@ -6,7 +6,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Project[] | string>
 ) {
-  const userName = req.query.userName
+  const userName = req.query.userName as string
   if (!userName) {
     return res.status(401).send('Unauthorized')
   }

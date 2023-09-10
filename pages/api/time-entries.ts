@@ -6,10 +6,12 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<TimeEntry[] | string>
 ) {
-  const userName = req.query.userName
+  const userName = req.query.userName as string
+
   if (!userName) {
     return res.status(401).send('Unauthorized')
   }
+
 
   switch (req.method) {
     case 'GET':
