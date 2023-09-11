@@ -23,7 +23,7 @@ export async function create(p: Project) {
 
 export async function update(p: Project) {
   return await sql<Project[]>`
-    UPDATE projects SET name=${p.name} WHERE id=${p.id}
+    UPDATE projects SET name=${p.name}, active=${p.active} WHERE id=${p.id}
     RETURNING id, name, active, user_name
   `
 }
