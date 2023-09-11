@@ -12,21 +12,21 @@ export interface TimeEntry{
 
 export async function listByProject(userName: string, projectId: number) {
   return await sql<TimeEntry[]>`
-    SELECT t.id, t.task, t.start, "end", t.project_id, p.project_name FROM time_entries t INNER JOIN projects p on time_entries.project_id = projects.id WHERE user_name=${userName} AND project_id=${projectId}
+    SELECT t.id, t.task, t.start, t.end, t.project_id, p.name as project_name FROM time_entries t INNER JOIN projects p on t.project_id = p.id WHERE user_name=${userName} AND project_id=${projectId}
     ORDER BY start DESC
   `
 }
 
 export async function listStartsInInterval(userName: string, start: Date, end: Date) {
   return await sql<TimeEntry[]>`
-    SELECT t.id, t.task, t.start, "end", t.project_id, p.project_name FROM time_entries t INNER JOIN projects p on time_entries.project_id = projects.id WHERE user_name=${userName} AND start >= ${start} AND start <= ${end}
+    SELECT t.id, t.task, t.start, t.end, t.project_id, p.name as project_name FROM time_entries t INNER JOIN projects p on t.project_id = p.id WHERE user_name=${userName} AND start >= ${start} AND start <= ${end}
     ORDER BY start DESC
   `
 }
 
 export async function list(userName: string) {
   return await sql<TimeEntry[]>`
-    SELECT t.id, t.task, t.start, "end", t.project_id, p.project_name FROM time_entries t INNER JOIN projects p on time_entries.project_id = projects.id WHERE user_name=${userName}
+    SELECT t.id, t.task, t.start, t.end, t.project_id, p.name as project_name FROM time_entries t INNER JOIN projects p on t.project_id = p.id WHERE user_name=${userName}
     ORDER BY start DESC
   `
 }
