@@ -15,7 +15,7 @@ export default async function handler(
     case 'GET':
       return res.status(200).json(await p.list())
     case 'POST':
-      return res.status(201).json(await p.create({...req.body, userName}))
+      return res.status(201).json(await p.create({...req.body, user_name: userName}))
     case 'PUT':
       if (req.body.userName !== userName) {
         return res.status(401).send('Unauthorized')

@@ -27,7 +27,7 @@ export default async function handler(
 
       return res.status(200).json(await te.list(userName))
     case 'POST':
-      return res.status(201).json(await te.create({...req.body, userName}))
+      return res.status(201).json(await te.create({...req.body, user_name: userName}))
     case 'PUT':
       if (req.body.userName !== userName) {
         return res.status(401).send('Unauthorized')
