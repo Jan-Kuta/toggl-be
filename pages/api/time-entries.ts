@@ -29,13 +29,13 @@ export default async function handler(
     case 'POST':
       return res.status(201).json(await te.create({...req.body, user_name: userName}))
     case 'PUT':
-      if (req.body.userName !== userName) {
+      if (req.body.user_name !== userName) {
         return res.status(401).send('Unauthorized')
       }
       const updated = await te.update(req.body)
       return res.status(updated.length > 0 ? 200 : 404).json(updated)
     case 'DELETE':
-      if (req.body.userName !== userName) {
+      if (req.body.user_name !== userName) {
         return res.status(401).send('Unauthorized')
       }
       const removed = await te.remove(req.body)
