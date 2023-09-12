@@ -33,14 +33,14 @@ export async function list(userName: string) {
 
 export async function create(te: TimeEntry) {
   return await sql<TimeEntry[]>`
-    INSERT INTO projects (task, start, "end", user_name, project_id) VALUES (${te.task}, ${te.start}, ${te.end || null}, ${te.user_name})
+    INSERT INTO time_entries (task, start, "end", user_name, project_id) VALUES (${te.task}, ${te.start}, ${te.end || null}, ${te.user_name}, ${te.project_id})
     RETURNING id, task, start, "end", project_id
   `
 }
 
 export async function update(te: TimeEntry) {
   return await sql<TimeEntry[]>`
-    UPDATE time_entry SET task=${te.task}, start={te.start}, "end"={te.end}, user_name=${te.user_name}, project_id=${te.project_id} WHERE id=${te.id}
+    UPDATE time_entries SET task=${te.task}, start={te.start}, "end"={te.end}, user_name=${te.user_name}, project_id=${te.project_id} WHERE id=${te.id}
     RETURNING id, task, start, "end", project_id
   `
 }
