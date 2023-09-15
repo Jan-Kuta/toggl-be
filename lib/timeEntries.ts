@@ -26,7 +26,7 @@ export async function listStartsInInterval(userName: string, start: Date, end: D
 
 export async function list(userName: string) {
   return await sql<TimeEntry[]>`
-    SELECT t.id, t.task, t.start, t.end, t.project_id, p.name as project_name, t.user_namei FROM time_entries t INNER JOIN projects p on t.project_id = p.id WHERE t.user_name=${userName}
+    SELECT t.id, t.task, t.start, t.end, t.project_id, p.name as project_name, t.user_name FROM time_entries t INNER JOIN projects p on t.project_id = p.id WHERE t.user_name=${userName}
     ORDER BY start DESC
   `
 }
